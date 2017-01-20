@@ -1,0 +1,19 @@
+{
+  "name": "awelty/loco-php-sdk",
+  "require": {
+    "guzzlehttp/guzzle": "^6.2",
+    "awelty/security": "dev-master",
+    "php": ">=5.4.0"
+  },
+  "authors": [
+    {
+      "name": "Jonathan Plantey",
+      "email": "jonathan@e-monsite.com"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "Awelty\\Component\\Loco\\": "src"
+    }
+  }
+}
