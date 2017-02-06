@@ -1,6 +1,6 @@
 # Loco PHP SDK
 
-PHP SDK for https://localise.biz
+Unofficial PHP SDK for https://localise.biz. The approach here is to use guzzlehttp/guzzle as a client and keep the SDK as simple as possible.
 
 ## Install
 
