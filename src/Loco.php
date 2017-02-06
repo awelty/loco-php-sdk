@@ -3,6 +3,7 @@
 namespace Awelty\Component\Loco;
 
 use Awelty\Component\Loco\Client\ExportClient;
+use Awelty\Component\Loco\Client\LocalesClient;
 use Awelty\Component\Loco\Client\TagsClient;
 use Awelty\Component\Security\MiddlewareProvider;
 use Awelty\Component\Security\SignatureProviderInterface;
@@ -15,15 +16,24 @@ class Loco
 {
     const BASE_URI = 'https://localise.biz/api/';
 
+    private $client;
+
+    private $serializer;
+
     /**
      * @var TagsClient
      */
-    public $tags;
+    private $tags;
 
     /**
      * @var ExportClient
      */
-    public $export;
+    private $export;
+
+    /**
+     * @var LocalesClient
+     */
+    private $locales;
 
     public function __construct(SignatureProviderInterface $signatureProvider, $guzzleOptions = [])
     {
@@ -40,12 +50,22 @@ class Loco
             $guzzleOptions['base_uri'] = self::BASE_URI;
         }
 
-        // Création des clients
-        //----------------------
-        $serializer = new Serializer([], [new JsonEncoder()]);
-        $client = new HttpClient($guzzleOptions);
+        $this->client = new HttpClient($guzzleOptions);
+        $this->serializer = new Serializer([], [new JsonEncoder()]);
+    }
 
-        $this->tags = new TagsClient($client, $serializer);
-        $this->export = new ExportClient($client, $serializer);
+    public function tags()
+    {
+        return $this->tags ?: $this->tags = new TagsClient($this->client, $this->serializer);
+    }
+
+    public function export()
+    {
+        return $this->export ?: $this->export = new ExportClient($this->client, $this->serializer);
+    }
+
+    public function locales()
+    {
+        return $this->locales ?: $this->locales = new LocalesClient($this->client, $this->serializer);
     }
 }

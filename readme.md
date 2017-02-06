@@ -50,7 +50,7 @@ In this way, it should be very easy to use it.
 ```
 <?php 
 
-$tags = $loco->tags->getTags();
+$tags = $loco->tags()->getTags();
 
 // TODO, createTag, patch($tag) (and maybe a shortcut "rename"), delete($tag)
 ```
@@ -62,8 +62,8 @@ $tags = $loco->tags->getTags();
 ```
 <?php 
 
-$translations = $loco->export->all($extension, $options = []);
-$translations = $loco->export->locale($locale, $extension, $options = []);
+$translations = $loco->export()->all($extension, $options = []);
+$translations = $loco->export()->locale($locale, $extension, $options = []);
 
 // TODO archive and template 
 
