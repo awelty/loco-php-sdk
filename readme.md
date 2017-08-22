@@ -5,7 +5,7 @@ Unofficial PHP SDK for https://localise.biz. The approach here is to use guzzleh
 ## Install
 
 ```
-composer require awelty/php-sdk:dev-master
+composer require awelty/loco-php-sdk:dev-master
 ```
 A stable version will eventually be released one day...
 
